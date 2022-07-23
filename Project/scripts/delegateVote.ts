@@ -9,6 +9,8 @@ import { Ballot } from "../../typechain";
 const EXPOSED_KEY =
   "8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f";
 
+// TODO: Make script compatible with token gated voting
+
 /*
 Script:
 - Delegate my vote by passing a user address as input and using the wallet in environment
