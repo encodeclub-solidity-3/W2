@@ -1,8 +1,8 @@
 import { Contract, ethers } from "ethers";
 import "dotenv/config";
-import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
+import * as ballotJson from "../artifacts/contracts/CustomBallot.sol/CustomBallot.json";
 // eslint-disable-next-line node/no-missing-import
-import { Ballot } from "../../typechain";
+import { CustomBallot } from "../typechain";
 
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
@@ -41,19 +41,21 @@ async function main() {
     const ballotAddress = process.argv[2];
     if (process.argv.length < 4) throw new Error("Proposal number missing");
     const proposal = process.argv[3];
+    if (process.argv.length < 5) throw new Error("Token quantity missing");
+    const tokenQuantity = ethers.utils.parseEther(parseInt(process.argv[4]).toFixed(18));
     const voter = wallet.address;
     console.log(
       `Attaching ballot contract interface to address ${ballotAddress}`
     );
-    const ballotContract: Ballot = new Contract(
+    const ballotContract: CustomBallot = new Contract(
       ballotAddress,
       ballotJson.abi,
       signer
-    ) as Ballot;
+    ) as CustomBallot;
 
     let proposalNum = parseInt(proposal);
-    console.log(`Casting vote for proposal #${proposalNum} for account ${voter}`);
-    const voteTx = await ballotContract.vote(proposal);
+    console.log(`Casting vote for proposal #${proposalNum} for account ${voter} using ${tokenQuantity} tokens`);
+    const voteTx = await ballotContract.vote(proposalNum, tokenQuantity);
     console.log("Awaiting confirmations");
     await voteTx.wait();
     console.log(`Transaction completed. Hash: ${voteTx.hash}`);
