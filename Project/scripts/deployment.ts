@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import "dotenv/config";
-import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
+import * as ballotJson from "../artifacts/contracts/CustomBallot.sol/CustomBallot.json";
 
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
@@ -43,8 +43,12 @@ async function main() {
     ballotJson.bytecode,
     signer
   );
+
+  const tokenAddress = "0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5";
+
+
   const ballotContract = await ballotFactory.deploy(
-    convertStringArrayToBytes32(proposals)
+    convertStringArrayToBytes32(proposals), tokenAddress
   );
   console.log("Awaiting confirmations");
   await ballotContract.deployed();
