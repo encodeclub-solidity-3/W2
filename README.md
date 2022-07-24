@@ -1,3 +1,92 @@
+# Encode Club Solidity Bootcamp
+### Week 2 Project - July 2022 Cohort
+Team Members: 
+- Daiana Bilbao (hello_dayana#4030)
+- Kevin Le (water1925#7425)
+- Christina Polyukh (cpolyukh#5660)
+<br><br>
+
+## Overview
+### DKC Token
+We are creating a tokenized ballot voting system that consists of a ballot smart contract with proposals to vote on, and an accompanying ERC-20 token that is used to cast votes. Our scripts will do the following:
+* Deploy the token smart contract
+* Deploy the ballot smart contract
+* Create ballots from snapshots
+* Give voting rights to a wallet by minting tokens
+* Query ballot proposals
+* Cast votes
+* Delegate votes
+* Query ballot results
+
+<br></br>
+## 1. Deploying the token smart contract
+DKC Token has been deployed on the Goerli test network 
+### ```deployToken.ts```
+
+```
+yarn ts-node ./scripts/deployToken.ts
+yarn run v1.22.18
+$ ./scripts/deployToken.ts
+Using address 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e
+Wallet balance 0.09091337644196155
+Deploying Token contract
+Awaiting confirmations
+Completed
+Contract deployed at 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5
+✨  Done in 57.98s.
+```
+`Token Contract Address` [x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5](https://goerli.etherscan.io/address/0x6ffd49b16297c51eba57721ae4193f3cc7a8e6c5)
+
+`Transaction Hash` [0x74d3b779389b2de3f86d3aec2c667e03f1f0a29e0519288efbbe98c4a8a8757c](https://goerli.etherscan.io/tx/0x74d3b779389b2de3f86d3aec2c667e03f1f0a29e0519288efbbe98c4a8a8757c)
+
+
+
+
+
+
+<br></br>
+## 2. Deploying the ballot smart contract
+
+### Ballot 
+Which ETHGlobal hackathon should we hack at next?
+
+### Proposals
+1. ETHOnline
+2. ETHMexico
+3. ETHBogotá
+4. ETHSanFrancisco
+5. ETHIndia
+
+### ```deployment.ts```
+
+```
+yarn ts-node ./scripts/deployment.ts ETHOnline ETHMexico ETHBogotá ETHSanFrancisco ETHIndia 
+yarn run v1.22.18
+./scripts/deployment.ts ETHOnline ETHMexico ETHBogotá ETHSanFrancisco ETHIndia
+Using address 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e
+Wallet balance 0.08420208990654587
+Deploying Ballot contract
+Proposals: 
+Proposal N. 1: ETHOnline
+Proposal N. 2: ETHMexico
+Proposal N. 3: ETHBogotá
+Proposal N. 4: ETHSanFrancisco
+Proposal N. 5: ETHIndia
+Awaiting confirmations
+Completed
+Contract deployed at 0xe3Fe7B8C8a6Fa3A958163C73FEA11fF3082fC9D9
+✨  Done in 28.26s.
+```
+`Ballot Contract Address` [0xe3Fe7B8C8a6Fa3A958163C73FEA11fF3082fC9D9](https://goerli.etherscan.io/address/0xe3fe7b8c8a6fa3a958163c73fea11ff3082fc9d9)
+
+`Transaction Hash` [0x94a21a048051b7dadd4f1320b509faede8c9fbd1b596df4066307e8eb82ab0a4](https://goerli.etherscan.io/tx/0x94a21a048051b7dadd4f1320b509faede8c9fbd1b596df4066307e8eb82ab0a4)
+
+
+
+
+<br></br>
+<br></br>
+# From Original Repository
 # Lesson 8 - Tokenized Votes
 ## The ERC20Votes ERC20 extension
 * ERC20Votes properties
