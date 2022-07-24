@@ -10,8 +10,7 @@ Team Members:
 ### DKC Token
 We are creating a tokenized ballot voting system that consists of a ballot smart contract with proposals to vote on, and an accompanying ERC-20 token that is used to cast votes. Our scripts will do the following:
 * Deploy the token smart contract
-* Deploy the ballot smart contract
-* Create ballots from snapshots
+* Deploy the ballot smart contract from a snapshot
 * Give voting rights to a wallet by minting tokens
 * Query ballot proposals
 * Cast votes
@@ -45,7 +44,7 @@ Contract deployed at 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5
 
 
 <br></br>
-## 2. Deploying the ballot smart contract
+## 2. Deploying the ballot smart contract from a snapshot
 
 ### Ballot 
 Which ETHGlobal hackathon should we hack at next?
@@ -58,6 +57,7 @@ Which ETHGlobal hackathon should we hack at next?
 5. ETHIndia
 
 ### ```deployment.ts```
+In our deployment script, we are deploying the `CustomBallot.sol` smart contract. This smart contract has an interface `IERC20Votes`, which contains the function `getPastVotes()`. `getPastVotes()` returns the account voting power based on a previous snapshot. More specifically, the snapshot is taken when the reference block number is stored when the ballot is deployed.
 
 ```
 yarn ts-node ./scripts/deployment.ts ETHOnline ETHMexico ETHBogotá ETHSanFrancisco ETHIndia 
