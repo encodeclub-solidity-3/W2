@@ -1,8 +1,8 @@
 import { Contract, ethers } from "ethers";
 import "dotenv/config";
-import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
+import * as ballotJson from "../artifacts/contracts/CustomBallot.sol/CustomBallot.json";
 // eslint-disable-next-line node/no-missing-import
-import { Ballot } from "../../typechain";
+import { CustomBallot } from "../typechain";
 
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
@@ -30,22 +30,22 @@ async function main() {
   console.log(
     `Attaching ballot contract interface to address ${ballotAddress}`
   );
-  const ballotContract: Ballot = new Contract(
+  const ballotContract: CustomBallot = new Contract(
     ballotAddress,
     ballotJson.abi,
     signer
-  ) as Ballot;
+  ) as CustomBallot;
 
   // Ballot question
-  console.log("Results for the ballot asking: What's your favorite cryptocurrency out of the following:")
+  console.log("Ballot: Which ETHGlobal hackathon should we hack at next?");
 
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 5; i++) {
     const proposal = await ballotContract.proposals(i);
     const proposalString = ethers.utils.parseBytes32String(proposal.name);
     console.log(`${i}: ${proposalString} received ${proposal.voteCount} votes`);
   }
 
-  console.log(`End of proposals`);
+  console.log(`End of results`);
 }
 
 main().catch((error) => {
