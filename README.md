@@ -81,7 +81,36 @@ Contract deployed at 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
 
 `Transaction Hash` [0x96f7c9742c166ded81e66e373221a4bb33259d471b608ec72412a2ccd948662f](https://goerli.etherscan.io/tx/0x96f7c9742c166ded81e66e373221a4bb33259d471b608ec72412a2ccd948662f)
 
+<br></br>
 
+## 3. Giving voting rights to a wallet by minting tokens
+
+<br></br>
+
+## 4. Querying ballot proposals
+`queryProposals.ts`
+
+```
+console.log("Ballot: Which ETHGlobal hackathon should we hack at next?");
+  for (let i = 0; i < 5; i++) {
+    const proposal = await ballotContract.proposals(i);
+    const proposalString = ethers.utils.parseBytes32String(proposal.name);
+    console.log(`${i}: ${proposalString}`);
+  }
+
+  console.log(`End of proposals`);
+```
+<br></br>
+
+## 5. Casting votes
+
+<br></br>
+
+## 6. Delegating votes
+
+<br></br>
+
+## 7. Querying ballot results
 
 
 <br></br>
