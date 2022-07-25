@@ -77,7 +77,7 @@ Completed
 Contract deployed at 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
 ✨  Done in 28.26s.
 ```
-`Ballot Contract Address` [0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf](https://goerli.etherscan.io/address/0x471fde047d8aee6aca94afdbeb4a624e8bd59795)
+`Ballot Contract Address` [0x471fdE047d8AEe6ACA94aFDBEB4a624E8BD59795](https://goerli.etherscan.io/address/0x471fde047d8aee6aca94afdbeb4a624e8bd59795)
 
 `Transaction Hash` [0x96f7c9742c166ded81e66e373221a4bb33259d471b608ec72412a2ccd948662f](https://goerli.etherscan.io/tx/0x96f7c9742c166ded81e66e373221a4bb33259d471b608ec72412a2ccd948662f)
 
