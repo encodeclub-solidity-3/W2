@@ -34,7 +34,7 @@ Completed
 Contract deployed at 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5
 ✨  Done in 57.98s.
 ```
-`Token Contract Address` [x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5](https://goerli.etherscan.io/address/0x6ffd49b16297c51eba57721ae4193f3cc7a8e6c5)
+`Token Contract Address` [0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5](https://goerli.etherscan.io/address/0x6ffd49b16297c51eba57721ae4193f3cc7a8e6c5)
 
 `Transaction Hash` [0x74d3b779389b2de3f86d3aec2c667e03f1f0a29e0519288efbbe98c4a8a8757c](https://goerli.etherscan.io/tx/0x74d3b779389b2de3f86d3aec2c667e03f1f0a29e0519288efbbe98c4a8a8757c)
 
