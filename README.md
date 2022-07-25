@@ -74,7 +74,7 @@ Proposal N. 4: ETHSanFrancisco
 Proposal N. 5: ETHIndia
 Awaiting confirmations
 Completed
-Contract deployed at 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
+Contract deployed at 0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca
 ✨  Done in 28.26s.
 ```
 `Ballot Contract Address` [0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca](https://goerli.etherscan.io/address/0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca)
@@ -84,8 +84,8 @@ Contract deployed at 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
 <br></br>
 
 ## 3. Minting tokens
-We are minting 10 DKC Tokens
-`mintTokens.ts`
+We minted 265 DKC Tokens to 5 different addresses using our
+`mintTokens.ts` script. Run script with Token contract address, the recipient of the token(s), and the token quantity. Below is an example of our script usage:
 
 ```
 yarn ts-node ./scripts/mintTokens.ts 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e 13
@@ -101,19 +101,22 @@ Final total supply: 13 tokens
 ✨  Done in 21.83s.
 ```
 `Transaction Hash` [0xb5c1aa162e317cdd7c61bfe542222b5aeb00cf4896bb05f07d54d8cc412a22c9](0xb5c1aa162e317cdd7c61bfe542222b5aeb00cf4896bb05f07d54d8cc412a22c9)
+
+`DKC Token Holders`
+[https://goerli.etherscan.io/token/tokenholderchart/0xe910B98E3eE9528B56b52964EeCeCd7B1B6e12b5](https://goerli.etherscan.io/tx/0xa5fd95d45f50a27877dd6830268fde372f1dec65689e039932a44d8bf184198b)
 <br></br>
 
 
 ## 4. Querying ballot proposals
 `queryProposals.ts`
-After running this script we get the following ballot proposals:
+After running this script with the ballot contract address we get the following ballot proposals:
 ```
-yarn run ts-node ./scripts/queryProposals.ts 0x471fdE047d8AEe6ACA94aFDBEB4a624E8BD59795
+yarn run ts-node ./scripts/queryProposals.ts 0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca
 yarn run v1.22.18
-$ '/node_modules/.bin/ts-node' ./scripts/queryProposals.ts 0x471fdE047d8AEe6ACA94aFDBEB4a624E8BD59795
+$ '/node_modules/.bin/ts-node' ./scripts/queryProposals.ts 0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca
 Using address 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e
 Wallet balance 0.11837792233258734
-Attaching ballot contract interface to address 0x471fdE047d8AEe6ACA94aFDBEB4a624E8BD59795
+Attaching ballot contract interface to address 0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca
 Ballot: Which ETHGlobal hackathon should we hack at next?
 0: ETHOnline
 1: ETHMexico
@@ -146,11 +149,42 @@ Post delegation voting power: 235.0000000000000001
 <br></br>
 
 ## 6. Casting votes
+Before casting a vote, you must ensure you have voting rights by delgating to yourself or someone else. To cast a vote provide the ballot contract address, the proposal number you want to vote for, and the token quantity you want to apply to your vote. 
 
+```
+yarn ts-node ./scripts/castVote.ts 0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca 2 1
+yarn run v1.22.10
+$ /Users/day/Solidity-Projects/W2/Project/node_modules/.bin/ts-node ./scripts/castVote.ts 0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca 2 1
+
+Using address 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
+Wallet balance 0.022073870485231017
+Attaching ballot contract interface to address 0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca
+Voting power prior to voting: 0
+Casting vote for proposal #2 for account 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf using 1 tokens
+```
+`Transaction Hash`[0xc2e0c057a5af17ab5f6e903e97b6a032d364828952320fd83c1b16c486f54ea3](https://goerli.etherscan.io/tx/0xc2e0c057a5af17ab5f6e903e97b6a032d364828952320fd83c1b16c486f54ea3)
 <br></br>
 
 
 ## 7. Querying ballot results
+Below are the results from voting a few times from different accounts. We were able to successfully cast votes for given proposals using DKC Tokens by delgating and casting votes. To run our script, you just need to provide the ballot contract address. 
+
+```
+yarn ts-node ./scripts/queryResults.ts 0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca
+yarn run v1.22.10
+$ /Users/day/Solidity-Projects/W2/Project/node_modules/.bin/ts-node ./scripts/queryResults.ts 0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca
+Using address 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
+Wallet balance 0.022073870485231017
+Attaching ballot contract interface to address 0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca
+Ballot: Which ETHGlobal hackathon should we hack at next?
+0: ETHOnline received 1 votes
+1: ETHMexico received 2 votes
+2: ETHBogotá received 1 votes
+3: ETHSanFrancisco received 5 votes
+4: ETHIndia received 0 votes
+End of results
+✨  Done in 4.44s.
+```
 
 
 <br></br>
