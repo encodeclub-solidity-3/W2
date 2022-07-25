@@ -83,9 +83,26 @@ Contract deployed at 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
 
 <br></br>
 
-## 3. Giving voting rights to a wallet by minting tokens
+## 3. Minting tokens
+We are minting 10 DKC Tokens
+`mintTokens.ts`
 
+```
+yarn ts-node ./scripts/mintTokens.ts 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e 10
+yarn run v1.22.18
+$ /node_modules/.bin/ts-node' ./scripts/mintTokens.ts 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e 10
+Using address 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e
+Wallet balance 0.11868161533402602
+Attaching token contract interface to address 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5
+Initial total supply: 560 tokens
+Token mint quantity: 10
+Tokens successfully minted. Transaction hash: 0x773852eee84f63eca13aed0b9f03899d1fba4d430cbf9d936e8d10ab18bbcd4c
+Final total supply: 570 tokens
+✨  Done in 21.83s.
+```
+`Transaction Hash` [0x773852eee84f63eca13aed0b9f03899d1fba4d430cbf9d936e8d10ab18bbcd4c](https://goerli.etherscan.io/tx/0x773852eee84f63eca13aed0b9f03899d1fba4d430cbf9d936e8d10ab18bbcd4c)
 <br></br>
+
 
 ## 4. Querying ballot proposals
 `queryProposals.ts`
