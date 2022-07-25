@@ -50,15 +50,13 @@ async function main() {
   const preDelegationVotingPower = await tokenContract.getVotes(toAddress);
   console.log(`Pre delegation voting power: ${preDelegationVotingPower}`);
   
+  console.log(`Delegating ${voterAddress}'s vote to ${toAddress} account.`);
   const delegateTokenTx = await tokenContract.delegate(toAddress);
   await delegateTokenTx.wait();
+  console.log(`Delegate transaction completed. Hash: ${delegateTokenTx.hash}`);
 
   const postDelegationVotingPower = await tokenContract.getVotes(toAddress);
   console.log(`Post delegation voting power: ${postDelegationVotingPower}`);
-
-  console.log(`Delegating ${voterAddress}'s vote to ${toAddress} account.`);
-
-  console.log(`Delegate transaction completed. Hash: ${delegateTokenTx.hash}`);
 }
 
 main().catch((error) => {
