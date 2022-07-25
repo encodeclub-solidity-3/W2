@@ -19,6 +19,7 @@ the wallet in environment.
 Script arguments:
 - Ballot address (where the Ballot smart contract is deployed)
 - Proposal to be voted on (by index number)
+- Quantity of voting tokens the voter wants to allocate towards a specific vote
 
 The voter is the address of the wallet in the environment.
 */
@@ -42,7 +43,8 @@ async function main() {
     if (process.argv.length < 4) throw new Error("Proposal number missing");
     const proposal = process.argv[3];
     if (process.argv.length < 5) throw new Error("Token quantity missing");
-    const tokenQuantity = ethers.utils.parseEther(parseInt(process.argv[4]).toFixed(18));
+    const tokenQuantityFormatted = parseInt(process.argv[4]);
+    const tokenQuantity = ethers.utils.parseEther(tokenQuantityFormatted.toFixed(18));
     const voter = wallet.address;
     console.log(
       `Attaching ballot contract interface to address ${ballotAddress}`
@@ -54,17 +56,19 @@ async function main() {
     ) as CustomBallot;
 
     const beforeVotingPower = await ballotContract.votingPower();
-    console.log(`Voting power prior to voting: ${beforeVotingPower}`);
+    const beforeVotingPowerFormatted = parseFloat(ethers.utils.formatEther(beforeVotingPower));
+    console.log(`Voting power prior to voting: ${beforeVotingPowerFormatted}`);
 
     let proposalNum = parseInt(proposal);
-    console.log(`Casting vote for proposal #${proposalNum} for account ${voter} using ${tokenQuantity} tokens`);
+    console.log(`Casting vote for proposal #${proposalNum} for account ${voter} using ${tokenQuantityFormatted} tokens`);
     const voteTx = await ballotContract.vote(proposalNum, tokenQuantity);
     console.log("Awaiting confirmations");
     await voteTx.wait();
     console.log(`Transaction completed. Hash: ${voteTx.hash}`);
 
     const afterVotingPower = await ballotContract.votingPower();
-    console.log(`Voting power after voting: ${afterVotingPower}`);
+    const afterVotingPowerFormatted = parseFloat(ethers.utils.formatEther(afterVotingPower));
+    console.log(`Voting power after voting: ${afterVotingPowerFormatted}`);
 }
 
 main().catch((error) => {

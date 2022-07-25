@@ -37,10 +37,11 @@ async function main() {
       tokenJson.abi,
       signer
     ) as MyToken;
-    
-    const votingPower = await tokenContract.getVotes(wallet.address);
 
-    console.log(`Voting power for current address: ${votingPower}`);
+    const votingPower = await tokenContract.getVotes(wallet.address);
+    const votingPowerFormatted = parseFloat(ethers.utils.formatEther(votingPower));
+
+    console.log(`Voting power for current address: ${votingPowerFormatted}`);
 }
 function delay(ms: number) {
   return new Promise( resolve => setTimeout(resolve, ms) );
