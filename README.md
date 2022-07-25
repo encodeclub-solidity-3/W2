@@ -38,11 +38,6 @@ Contract deployed at 0xe910B98E3eE9528B56b52964EeCeCd7B1B6e12b5
 
 `Transaction Hash` [0xc17cdd2c1d464b07fc764f158c06b6b35576722683da8ab49a52dd714947d708](https://goerli.etherscan.io/tx/0xc17cdd2c1d464b07fc764f158c06b6b35576722683da8ab49a52dd714947d708)
 
-
-
-
-
-
 <br></br>
 ## 2. Deploying the ballot smart contract from a snapshot
 
@@ -82,6 +77,7 @@ Contract deployed at 0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca
 `Transaction Hash` [0xa5fd95d45f50a27877dd6830268fde372f1dec65689e039932a44d8bf184198b](https://goerli.etherscan.io/tx/0xa5fd95d45f50a27877dd6830268fde372f1dec65689e039932a44d8bf184198b)
 
 <br></br>
+
 ## 3. Minting tokens
 We minted 265 DKC Tokens to 5 different addresses using our
 `mintTokens.ts` script. Run script with Token contract address, the recipient of the token(s), and the token quantity. Below is an example of our script usage:
@@ -100,6 +96,7 @@ Final total supply: 13 tokens
 ✨  Done in 21.83s.
 ```
 `Transaction Hash` [0xb5c1aa162e317cdd7c61bfe542222b5aeb00cf4896bb05f07d54d8cc412a22c9](0xb5c1aa162e317cdd7c61bfe542222b5aeb00cf4896bb05f07d54d8cc412a22c9)
+
 `DKC Token Holders`
 [https://goerli.etherscan.io/token/tokenholderchart/0xe910B98E3eE9528B56b52964EeCeCd7B1B6e12b5](https://goerli.etherscan.io/tx/0xa5fd95d45f50a27877dd6830268fde372f1dec65689e039932a44d8bf184198b)
 <br></br>
@@ -126,8 +123,8 @@ Ballot: Which ETHGlobal hackathon should we hack at next?
 End of proposals
 ✨  Done in 5.42s.
 ```
-
 <br></br>
+
 ## 5. Delegating votes
 Delegating a wallet's voting power to another wallet. Before delegating, the delegator wallet has 222 voting power, and the target delegatee wallet has 13 voting power. After delegating, the target wallet has a total of 235 voting power.
 
@@ -164,10 +161,7 @@ Casting vote for proposal #2 for account 0xC0c630f5c9A78A75a92617852AD0F4E80BF25
 ```
 `Transaction Hash`[0xc2e0c057a5af17ab5f6e903e97b6a032d364828952320fd83c1b16c486f54ea3](https://goerli.etherscan.io/tx/0xc2e0c057a5af17ab5f6e903e97b6a032d364828952320fd83c1b16c486f54ea3)
 <br></br>
-## 6. Casting votes
 
-
-<br></br>
 ## 7. Querying ballot results
 Below are the results from voting a few times from different accounts. We were able to successfully cast votes for given proposals using DKC Tokens by delgating and casting votes. To run our script, you just need to provide the ballot contract address. 
 
