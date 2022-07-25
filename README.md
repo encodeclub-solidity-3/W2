@@ -31,12 +31,12 @@ Wallet balance 0.09091337644196155
 Deploying Token contract
 Awaiting confirmations
 Completed
-Contract deployed at 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5
+Contract deployed at 0xe910B98E3eE9528B56b52964EeCeCd7B1B6e12b5
 ✨  Done in 57.98s.
 ```
-`Token Contract Address` [0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5](https://goerli.etherscan.io/address/0x6ffd49b16297c51eba57721ae4193f3cc7a8e6c5)
+`Token Contract Address` [0xe910B98E3eE9528B56b52964EeCeCd7B1B6e12b5](https://goerli.etherscan.io/address/0xe910B98E3eE9528B56b52964EeCeCd7B1B6e12b5)
 
-`Transaction Hash` [0x74d3b779389b2de3f86d3aec2c667e03f1f0a29e0519288efbbe98c4a8a8757c](https://goerli.etherscan.io/tx/0x74d3b779389b2de3f86d3aec2c667e03f1f0a29e0519288efbbe98c4a8a8757c)
+`Transaction Hash` [0xc17cdd2c1d464b07fc764f158c06b6b35576722683da8ab49a52dd714947d708](https://goerli.etherscan.io/tx/0xc17cdd2c1d464b07fc764f158c06b6b35576722683da8ab49a52dd714947d708)
 
 
 
@@ -63,7 +63,7 @@ In our deployment script, we are deploying the `CustomBallot.sol` smart contract
 yarn ts-node ./scripts/deployment.ts ETHOnline ETHMexico ETHBogotá ETHSanFrancisco ETHIndia 
 yarn run v1.22.18
 ./scripts/deployment.ts ETHOnline ETHMexico ETHBogotá ETHSanFrancisco ETHIndia
-Using address 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
+Using address 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e
 Wallet balance 0.08420208990654587
 Deploying Ballot contract
 Proposals: 
@@ -77,9 +77,9 @@ Completed
 Contract deployed at 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
 ✨  Done in 28.26s.
 ```
-`Ballot Contract Address` [0x471fdE047d8AEe6ACA94aFDBEB4a624E8BD59795](https://goerli.etherscan.io/address/0x471fde047d8aee6aca94afdbeb4a624e8bd59795)
+`Ballot Contract Address` [0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca](https://goerli.etherscan.io/address/0x9f08c399e757b6974cE0513aa6cd57D31a32e8ca)
 
-`Transaction Hash` [0x96f7c9742c166ded81e66e373221a4bb33259d471b608ec72412a2ccd948662f](https://goerli.etherscan.io/tx/0x96f7c9742c166ded81e66e373221a4bb33259d471b608ec72412a2ccd948662f)
+`Transaction Hash` [0xa5fd95d45f50a27877dd6830268fde372f1dec65689e039932a44d8bf184198b](https://goerli.etherscan.io/tx/0xa5fd95d45f50a27877dd6830268fde372f1dec65689e039932a44d8bf184198b)
 
 <br></br>
 
@@ -88,19 +88,19 @@ We are minting 10 DKC Tokens
 `mintTokens.ts`
 
 ```
-yarn ts-node ./scripts/mintTokens.ts 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e 10
+yarn ts-node ./scripts/mintTokens.ts 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e 13
 yarn run v1.22.18
-$ /node_modules/.bin/ts-node' ./scripts/mintTokens.ts 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e 10
+$ /node_modules/.bin/ts-node' ./scripts/mintTokens.ts 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e 13
 Using address 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e
 Wallet balance 0.11868161533402602
 Attaching token contract interface to address 0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5
-Initial total supply: 560 tokens
-Token mint quantity: 10
+Initial total supply: 1e-16 tokens
+Token mint quantity: 13
 Tokens successfully minted. Transaction hash: 0x773852eee84f63eca13aed0b9f03899d1fba4d430cbf9d936e8d10ab18bbcd4c
-Final total supply: 570 tokens
+Final total supply: 13 tokens
 ✨  Done in 21.83s.
 ```
-`Transaction Hash` [0x773852eee84f63eca13aed0b9f03899d1fba4d430cbf9d936e8d10ab18bbcd4c](https://goerli.etherscan.io/tx/0x773852eee84f63eca13aed0b9f03899d1fba4d430cbf9d936e8d10ab18bbcd4c)
+`Transaction Hash` [0xb5c1aa162e317cdd7c61bfe542222b5aeb00cf4896bb05f07d54d8cc412a22c9](0xb5c1aa162e317cdd7c61bfe542222b5aeb00cf4896bb05f07d54d8cc412a22c9)
 <br></br>
 
 
@@ -137,13 +137,29 @@ End of proposals
 
 <br></br>
 
-## 5. Casting votes
+## 5. Delegating votes
+Delegating a wallet's voting power to another wallet. Before delegating, the delegator wallet has 222 voting power, and the target delegatee wallet has 13 voting power. After delegating, the target wallet has a total of 235 voting power.
+
+`delegateVote.ts`
+```
+% yarn ts-node ./scripts/delegateVote.ts 0xe910B98E3eE9528B56b52964EeCeCd7B1B6e12b5 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e
+yarn run v1.22.18
+$ '/node_modules/.bin/ts-node' ./scripts/delegateVote.ts 0xe910B98E3eE9528B56b52964EeCeCd7B1B6e12b5 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e
+Using address 0xf5e2e431864DCd48A5b00713CEf9ab919c539213
+Wallet balance 0.04958867599791108
+Attaching token contract interface to address 0xe910B98E3eE9528B56b52964EeCeCd7B1B6e12b5
+Pre delegation voting power: 13000000000000000100
+Delegating 0xf5e2e431864DCd48A5b00713CEf9ab919c539213's vote to 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e account.
+Delegate transaction completed. Hash: 0xc2e0c057a5af17ab5f6e903e97b6a032d364828952320fd83c1b16c486f54ea3
+Post delegation voting power: 235000000000000000100
+```
 
 <br></br>
 
-## 6. Delegating votes
+## 6. Casting votes
 
 <br></br>
+
 
 ## 7. Querying ballot results
 
