@@ -82,7 +82,6 @@ Contract deployed at 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
 `Transaction Hash` [0xa5fd95d45f50a27877dd6830268fde372f1dec65689e039932a44d8bf184198b](https://goerli.etherscan.io/tx/0xa5fd95d45f50a27877dd6830268fde372f1dec65689e039932a44d8bf184198b)
 
 <br></br>
-
 ## 3. Minting tokens
 We are minting 10 DKC Tokens
 `mintTokens.ts`
@@ -101,9 +100,9 @@ Final total supply: 13 tokens
 ✨  Done in 21.83s.
 ```
 `Transaction Hash` [0xb5c1aa162e317cdd7c61bfe542222b5aeb00cf4896bb05f07d54d8cc412a22c9](0xb5c1aa162e317cdd7c61bfe542222b5aeb00cf4896bb05f07d54d8cc412a22c9)
+
+
 <br></br>
-
-
 ## 4. Querying ballot proposals
 `queryProposals.ts`
 After running this script we get the following ballot proposals:
@@ -125,7 +124,6 @@ End of proposals
 ```
 
 <br></br>
-
 ## 5. Delegating votes
 Delegating a wallet's voting power to another wallet. Before delegating, the delegator wallet has 222 voting power, and the target delegatee wallet has 13 voting power. After delegating, the target wallet has a total of 235 voting power.
 
@@ -143,13 +141,12 @@ Delegate transaction completed. Hash: 0xc2e0c057a5af17ab5f6e903e97b6a032d3648289
 Post delegation voting power: 235.0000000000000001
 ```
 `Transaction Hash`[0xc2e0c057a5af17ab5f6e903e97b6a032d364828952320fd83c1b16c486f54ea3](https://goerli.etherscan.io/tx/0xc2e0c057a5af17ab5f6e903e97b6a032d364828952320fd83c1b16c486f54ea3)
-<br></br>
 
+<br></br>
 ## 6. Casting votes
 
+
 <br></br>
-
-
 ## 7. Querying ballot results
 
 
