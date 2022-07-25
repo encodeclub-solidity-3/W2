@@ -1,15 +1,13 @@
 import { Contract, ethers } from "ethers";
 import "dotenv/config";
-import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
+import * as ballotJson from "../artifacts/contracts/CustomBallot.sol/CustomBallot.json";
 // eslint-disable-next-line node/no-missing-import
-import { Ballot } from "../../typechain";
+import { CustomBallot } from "../typechain";
 
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
 const EXPOSED_KEY =
   "8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f";
-
-// TODO: Make script compatible with token gated voting
 
 /*
 Script:
@@ -32,34 +30,35 @@ async function main() {
     throw new Error("Not enough ether");
   }
 
+  // get ballot address from arguments
   if (process.argv.length < 3) throw new Error("Ballot address missing");
   const ballotAddress = process.argv[2];
-  if (process.argv.length < 4) throw new Error("Delegate address missing");
+
+  // get delegatee address from arguments
+  if (process.argv.length < 4) throw new Error("Delegatee address missing");
   const toAddress = process.argv[3];
   const voterAddress = wallet.address;
+
   console.log(
     `Attaching ballot contract interface to address ${ballotAddress}`
   );
-  const ballotContract: Ballot = new Contract(
+
+  // contract instance
+  const ballotContract: CustomBallot = new Contract(
     ballotAddress,
     ballotJson.abi,
     signer
-  ) as Ballot;
+  ) as CustomBallot;
 
-  const voterInfo = await ballotContract.voters(voterAddress);
-  const toInfo = await ballotContract.voters(toAddress);
   console.log(`Delegating ${voterAddress}'s vote to ${toAddress} account.`);
-  console.log(
-    `VoterInfo - Weight: ${voterInfo.weight}, Voted: ${voterInfo.voted}, Delegate: ${voterInfo.delegate}, Vote: ${voterInfo.vote}`
-  );
-  console.log(
-    `ToInfo - Weight: ${toInfo.weight}, Voted: ${toInfo.voted}, Delegate: ${toInfo.delegate}, Vote: ${toInfo.vote}`
-  );
-  const delegateTx = await ballotContract.delegate(toAddress);
+
+  const delegateTx = await ballotContract.delegateVote(toAddress);
   delegateTx.wait();
+
   console.log("Awaiting confirmations");
   await delegateTx.wait();
-  console.log(`Transaction completed. Hash: ${delegateTx.hash}`);
+
+  console.log(`Delegate transaction completed. Hash: ${delegateTx.hash}`);
 }
 
 main().catch((error) => {
