@@ -63,7 +63,7 @@ In our deployment script, we are deploying the `CustomBallot.sol` smart contract
 yarn ts-node ./scripts/deployment.ts ETHOnline ETHMexico ETHBogotá ETHSanFrancisco ETHIndia 
 yarn run v1.22.18
 ./scripts/deployment.ts ETHOnline ETHMexico ETHBogotá ETHSanFrancisco ETHIndia
-Using address 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e
+Using address 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
 Wallet balance 0.08420208990654587
 Deploying Ballot contract
 Proposals: 
@@ -74,12 +74,12 @@ Proposal N. 4: ETHSanFrancisco
 Proposal N. 5: ETHIndia
 Awaiting confirmations
 Completed
-Contract deployed at 0xe3Fe7B8C8a6Fa3A958163C73FEA11fF3082fC9D9
+Contract deployed at 0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf
 ✨  Done in 28.26s.
 ```
-`Ballot Contract Address` [0xe3Fe7B8C8a6Fa3A958163C73FEA11fF3082fC9D9](https://goerli.etherscan.io/address/0xe3fe7b8c8a6fa3a958163c73fea11ff3082fc9d9)
+`Ballot Contract Address` [0xC0c630f5c9A78A75a92617852AD0F4E80BF252Cf](https://goerli.etherscan.io/address/0x471fde047d8aee6aca94afdbeb4a624e8bd59795)
 
-`Transaction Hash` [0x94a21a048051b7dadd4f1320b509faede8c9fbd1b596df4066307e8eb82ab0a4](https://goerli.etherscan.io/tx/0x94a21a048051b7dadd4f1320b509faede8c9fbd1b596df4066307e8eb82ab0a4)
+`Transaction Hash` [0x96f7c9742c166ded81e66e373221a4bb33259d471b608ec72412a2ccd948662f](https://goerli.etherscan.io/tx/0x96f7c9742c166ded81e66e373221a4bb33259d471b608ec72412a2ccd948662f)
 
 
 
