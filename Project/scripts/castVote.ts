@@ -53,12 +53,18 @@ async function main() {
       signer
     ) as CustomBallot;
 
+    const beforeVotingPower = await ballotContract.votingPower();
+    console.log(`Voting power prior to voting: ${beforeVotingPower}`);
+
     let proposalNum = parseInt(proposal);
     console.log(`Casting vote for proposal #${proposalNum} for account ${voter} using ${tokenQuantity} tokens`);
     const voteTx = await ballotContract.vote(proposalNum, tokenQuantity);
     console.log("Awaiting confirmations");
     await voteTx.wait();
     console.log(`Transaction completed. Hash: ${voteTx.hash}`);
+
+    const afterVotingPower = await ballotContract.votingPower();
+    console.log(`Voting power after voting: ${afterVotingPower}`);
 }
 
 main().catch((error) => {

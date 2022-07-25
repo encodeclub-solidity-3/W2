@@ -42,7 +42,8 @@ async function main() {
   for (let i = 0; i < 5; i++) {
     const proposal = await ballotContract.proposals(i);
     const proposalString = ethers.utils.parseBytes32String(proposal.name);
-    console.log(`${i}: ${proposalString} received ${proposal.voteCount} votes`);
+    const voteCount = parseFloat(ethers.utils.formatEther(proposal.voteCount));
+    console.log(`${i}: ${proposalString} received ${voteCount} votes`);
   }
 
   console.log(`End of results`);
