@@ -106,18 +106,7 @@ Final total supply: 13 tokens
 
 ## 4. Querying ballot proposals
 `queryProposals.ts`
-
-```
-console.log("Ballot: Which ETHGlobal hackathon should we hack at next?");
-  for (let i = 0; i < 5; i++) {
-    const proposal = await ballotContract.proposals(i);
-    const proposalString = ethers.utils.parseBytes32String(proposal.name);
-    console.log(`${i}: ${proposalString}`);
-  }
-
-  console.log(`End of proposals`);
-```
-
+After running this script we get the following ballot proposals:
 ```
 yarn run ts-node ./scripts/queryProposals.ts 0x471fdE047d8AEe6ACA94aFDBEB4a624E8BD59795
 yarn run v1.22.18
@@ -148,12 +137,12 @@ $ '/node_modules/.bin/ts-node' ./scripts/delegateVote.ts 0xe910B98E3eE9528B56b52
 Using address 0xf5e2e431864DCd48A5b00713CEf9ab919c539213
 Wallet balance 0.04958867599791108
 Attaching token contract interface to address 0xe910B98E3eE9528B56b52964EeCeCd7B1B6e12b5
-Pre delegation voting power: 13000000000000000100
+Pre delegation voting power: 13.0000000000000001
 Delegating 0xf5e2e431864DCd48A5b00713CEf9ab919c539213's vote to 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e account.
 Delegate transaction completed. Hash: 0xc2e0c057a5af17ab5f6e903e97b6a032d364828952320fd83c1b16c486f54ea3
-Post delegation voting power: 235000000000000000100
+Post delegation voting power: 235.0000000000000001
 ```
-
+`Transaction Hash`[0xc2e0c057a5af17ab5f6e903e97b6a032d364828952320fd83c1b16c486f54ea3](https://goerli.etherscan.io/tx/0xc2e0c057a5af17ab5f6e903e97b6a032d364828952320fd83c1b16c486f54ea3)
 <br></br>
 
 ## 6. Casting votes
