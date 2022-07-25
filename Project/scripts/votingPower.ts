@@ -1,26 +1,16 @@
 import { Contract, ethers } from "ethers";
 import "dotenv/config";
-import * as ballotJson from "../artifacts/contracts/CustomBallot.sol/CustomBallot.json";
+import * as tokenJson from "../artifacts/contracts/Token.sol/MyToken.json";
 // eslint-disable-next-line node/no-missing-import
-import { CustomBallot } from "../typechain";
+import { CustomBallot, IERC20Votes, MyToken } from "../typechain";
 
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
 const EXPOSED_KEY =
   "8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f";
 
-// TODO: Test once ballot contract is deployed
-
 /*
-Goal:
-Cast a vote to a ballot passing contract address and proposal as input and using
-the wallet in environment.
-
-Script arguments:
-- Ballot address (where the Ballot smart contract is deployed)
-- Proposal to be voted on (by index number)
-
-The voter is the address of the wallet in the environment.
+Query voting power for current address with provided ballot contract.
 */
 async function main() {
     const wallet =
@@ -37,21 +27,24 @@ async function main() {
       throw new Error("Not enough ether");
     }
 
-    if (process.argv.length < 3) throw new Error("Ballot address missing");
-    const ballotAddress = process.argv[2];
+    if (process.argv.length < 3) throw new Error("Token address missing");
+    const tokenAddress = process.argv[2];
     console.log(
-      `Attaching ballot contract interface to address ${ballotAddress}`
+      `Attaching token contract interface to address ${tokenAddress}`
     );
-    const ballotContract: CustomBallot = new Contract(
-      ballotAddress,
-      ballotJson.abi,
+    const tokenContract: MyToken = new Contract(
+      tokenAddress,
+      tokenJson.abi,
       signer
-    ) as CustomBallot;
+    ) as MyToken;
+    
+    const votingPower = await tokenContract.getVotes(wallet.address);
 
-    const votingPower = await ballotContract.votingPower();
     console.log(`Voting power for current address: ${votingPower}`);
 }
-
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
