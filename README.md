@@ -117,6 +117,24 @@ console.log("Ballot: Which ETHGlobal hackathon should we hack at next?");
 
   console.log(`End of proposals`);
 ```
+
+```
+yarn run ts-node ./scripts/queryProposals.ts 0x471fdE047d8AEe6ACA94aFDBEB4a624E8BD59795
+yarn run v1.22.18
+$ '/node_modules/.bin/ts-node' ./scripts/queryProposals.ts 0x471fdE047d8AEe6ACA94aFDBEB4a624E8BD59795
+Using address 0xc50e3344bc24f14f4a65E127D655F20441fC3D7e
+Wallet balance 0.11837792233258734
+Attaching ballot contract interface to address 0x471fdE047d8AEe6ACA94aFDBEB4a624E8BD59795
+Ballot: Which ETHGlobal hackathon should we hack at next?
+0: ETHOnline
+1: ETHMexico
+2: ETHBogotá
+3: ETHSanFrancisco
+4: ETHIndia
+End of proposals
+✨  Done in 5.42s.
+```
+
 <br></br>
 
 ## 5. Casting votes
