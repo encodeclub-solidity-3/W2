@@ -45,7 +45,7 @@ async function main() {
     signer
   ) as MyToken;
   // Get address of token recipient from script arguments
-  if (process.argv.length < 3) throw new Error("Recipient address missing");
+  if (process.argv.length < 4) throw new Error("Recipient address missing");
   const recipientAddress = process.argv[3];
   // Log total initial token supply
   const initialTotalSupply = await tokenContract.totalSupply();
