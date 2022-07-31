@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import "dotenv/config";
-import * as tokenJson from "../artifacts/contracts/Token.sol/MyToken.json"
+import * as tokenJson from "../artifacts/contracts/Token.sol/MyToken.json";
 
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
@@ -11,9 +11,9 @@ function setupProvider() {
   const infuraOptions = process.env.INFURA_API_KEY
     ? process.env.INFURA_API_SECRET
       ? {
-        projectId: process.env.INFURA_API_KEY,
-        projectSecret: process.env.INFURA_API_SECRET,
-      }
+          projectId: process.env.INFURA_API_KEY,
+          projectSecret: process.env.INFURA_API_SECRET,
+        }
       : process.env.INFURA_API_KEY
     : "";
   const options = {

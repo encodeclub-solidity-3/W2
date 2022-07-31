@@ -24,51 +24,59 @@ Script arguments:
 The voter is the address of the wallet in the environment.
 */
 async function main() {
-    const wallet =
-      process.env.MNEMONIC && process.env.MNEMONIC.length > 0
-        ? ethers.Wallet.fromMnemonic(process.env.MNEMONIC)
-        : new ethers.Wallet(process.env.PRIVATE_KEY ?? EXPOSED_KEY);
-    console.log(`Using address ${wallet.address}`);
-    const provider = ethers.providers.getDefaultProvider("goerli");
-    const signer = wallet.connect(provider);
-    const balanceBN = await signer.getBalance();
-    const balance = Number(ethers.utils.formatEther(balanceBN));
-    console.log(`Wallet balance ${balance}`);
-    if (balance < 0.01) {
-      throw new Error("Not enough ether");
-    }
+  const wallet =
+    process.env.MNEMONIC && process.env.MNEMONIC.length > 0
+      ? ethers.Wallet.fromMnemonic(process.env.MNEMONIC)
+      : new ethers.Wallet(process.env.PRIVATE_KEY ?? EXPOSED_KEY);
+  console.log(`Using address ${wallet.address}`);
+  const provider = ethers.providers.getDefaultProvider("goerli");
+  const signer = wallet.connect(provider);
+  const balanceBN = await signer.getBalance();
+  const balance = Number(ethers.utils.formatEther(balanceBN));
+  console.log(`Wallet balance ${balance}`);
+  if (balance < 0.01) {
+    throw new Error("Not enough ether");
+  }
 
-    if (process.argv.length < 3) throw new Error("Ballot address missing");
-    const ballotAddress = process.argv[2];
-    if (process.argv.length < 4) throw new Error("Proposal number missing");
-    const proposal = process.argv[3];
-    if (process.argv.length < 5) throw new Error("Token quantity missing");
-    const tokenQuantityFormatted = parseInt(process.argv[4]);
-    const tokenQuantity = ethers.utils.parseEther(tokenQuantityFormatted.toFixed(18));
-    const voter = wallet.address;
-    console.log(
-      `Attaching ballot contract interface to address ${ballotAddress}`
-    );
-    const ballotContract: CustomBallot = new Contract(
-      ballotAddress,
-      ballotJson.abi,
-      signer
-    ) as CustomBallot;
+  if (process.argv.length < 3) throw new Error("Ballot address missing");
+  const ballotAddress = process.argv[2];
+  if (process.argv.length < 4) throw new Error("Proposal number missing");
+  const proposal = process.argv[3];
+  if (process.argv.length < 5) throw new Error("Token quantity missing");
+  const tokenQuantityFormatted = parseInt(process.argv[4]);
+  const tokenQuantity = ethers.utils.parseEther(
+    tokenQuantityFormatted.toFixed(18)
+  );
+  const voter = wallet.address;
+  console.log(
+    `Attaching ballot contract interface to address ${ballotAddress}`
+  );
+  const ballotContract: CustomBallot = new Contract(
+    ballotAddress,
+    ballotJson.abi,
+    signer
+  ) as CustomBallot;
 
-    const beforeVotingPower = await ballotContract.votingPower();
-    const beforeVotingPowerFormatted = parseFloat(ethers.utils.formatEther(beforeVotingPower));
-    console.log(`Voting power prior to voting: ${beforeVotingPowerFormatted}`);
+  const beforeVotingPower = await ballotContract.votingPower();
+  const beforeVotingPowerFormatted = parseFloat(
+    ethers.utils.formatEther(beforeVotingPower)
+  );
+  console.log(`Voting power prior to voting: ${beforeVotingPowerFormatted}`);
 
-    let proposalNum = parseInt(proposal);
-    console.log(`Casting vote for proposal #${proposalNum} for account ${voter} using ${tokenQuantityFormatted} tokens`);
-    const voteTx = await ballotContract.vote(proposalNum, tokenQuantity);
-    console.log("Awaiting confirmations");
-    await voteTx.wait();
-    console.log(`Transaction completed. Hash: ${voteTx.hash}`);
+  const proposalNum = parseInt(proposal);
+  console.log(
+    `Casting vote for proposal #${proposalNum} for account ${voter} using ${tokenQuantityFormatted} tokens`
+  );
+  const voteTx = await ballotContract.vote(proposalNum, tokenQuantity);
+  console.log("Awaiting confirmations");
+  await voteTx.wait();
+  console.log(`Transaction completed. Hash: ${voteTx.hash}`);
 
-    const afterVotingPower = await ballotContract.votingPower();
-    const afterVotingPowerFormatted = parseFloat(ethers.utils.formatEther(afterVotingPower));
-    console.log(`Voting power after voting: ${afterVotingPowerFormatted}`);
+  const afterVotingPower = await ballotContract.votingPower();
+  const afterVotingPowerFormatted = parseFloat(
+    ethers.utils.formatEther(afterVotingPower)
+  );
+  console.log(`Voting power after voting: ${afterVotingPowerFormatted}`);
 }
 
 main().catch((error) => {

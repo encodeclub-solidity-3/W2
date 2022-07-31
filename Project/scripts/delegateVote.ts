@@ -1,9 +1,8 @@
 import { Contract, ethers } from "ethers";
 import "dotenv/config";
-import * as ballotJson from "../artifacts/contracts/CustomBallot.sol/CustomBallot.json";
 import * as tokenJson from "../artifacts/contracts/Token.sol/MyToken.json";
 // eslint-disable-next-line node/no-missing-import
-import { CustomBallot, MyToken } from "../typechain";
+import { MyToken } from "../typechain";
 
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
@@ -33,9 +32,7 @@ async function main() {
 
   if (process.argv.length < 3) throw new Error("Token address missing");
   const tokenAddress = process.argv[2];
-  console.log(
-    `Attaching token contract interface to address ${tokenAddress}`
-  );
+  console.log(`Attaching token contract interface to address ${tokenAddress}`);
   const tokenContract: MyToken = new Contract(
     tokenAddress,
     tokenJson.abi,
@@ -46,10 +43,10 @@ async function main() {
   if (process.argv.length < 4) throw new Error("Delegatee address missing");
   const toAddress = process.argv[3];
   const voterAddress = wallet.address;
-  
+
   const preDelegationVotingPower = await tokenContract.getVotes(toAddress);
   console.log(`Pre delegation voting power: ${preDelegationVotingPower}`);
-  
+
   console.log(`Delegating ${voterAddress}'s vote to ${toAddress} account.`);
   const delegateTokenTx = await tokenContract.delegate(toAddress);
   await delegateTokenTx.wait();

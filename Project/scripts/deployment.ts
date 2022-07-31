@@ -46,9 +46,9 @@ async function main() {
 
   const tokenAddress = "0x6fFD49B16297c51eBa57721AE4193f3cc7a8E6C5";
 
-
   const ballotContract = await ballotFactory.deploy(
-    convertStringArrayToBytes32(proposals), tokenAddress
+    convertStringArrayToBytes32(proposals),
+    tokenAddress
   );
   console.log("Awaiting confirmations");
   await ballotContract.deployed();
