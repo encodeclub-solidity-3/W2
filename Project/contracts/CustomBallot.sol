@@ -6,6 +6,10 @@ interface IERC20Votes {
     function delegate(address delegatee) external;
 }
 
+/// @title CustomBallot
+/// @author Matthew Wager
+/// @notice CustomBallot is a voting contract that allows for a custom ballot to be created.
+/// @dev The CustomBallot contract uses the voterToken - a ERC20 token to vote on a ballot.
 contract CustomBallot {
     event Voted(
         address indexed voter,
@@ -33,6 +37,9 @@ contract CustomBallot {
         referenceBlock = block.number;
     }
 
+    /// @notice Register a vote for a proposal.
+    /// @param proposal The index of the proposal to vote for.
+    /// @param amount The weight of the vote.
     function vote(uint256 proposal, uint256 amount) external {
         uint256 votingPowerAvailable = votingPower();
         require(votingPowerAvailable >= amount, "Has not enough voting power");
@@ -41,10 +48,14 @@ contract CustomBallot {
         emit Voted(msg.sender, proposal, amount, proposals[proposal].voteCount);
     }
 
+    /// @notice Delegate vote from sender address to to address.
+    /// @param to The address to delegate vote to.
     function delegateVote(address to) external {
         voteToken.delegate(to);
     }
 
+    /// @notice Get the winning proposal key.
+    /// @return winningProposal_ The index of the winning proposal.
     function winningProposal() public view returns (uint256 winningProposal_) {
         uint256 winningVoteCount = 0;
         for (uint256 p = 0; p < proposals.length; p++) {
@@ -55,7 +66,8 @@ contract CustomBallot {
         }
     }
 
-
+    /// @notice Get the winning proposal name.
+    /// @return winnerName_ The name of the winning proposal.
     function winnerName() external view returns (bytes32 winnerName_) {
         winnerName_ = proposals[winningProposal()].name;
     }
