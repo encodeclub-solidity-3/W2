@@ -2,11 +2,7 @@ import { Contract, ethers } from "ethers";
 import "dotenv/config";
 import * as tokenJson from "../artifacts/contracts/Token.sol/MyToken.json";
 import { MyToken } from "../typechain";
-
-// This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
-// Do never expose your keys like this
-const EXPOSED_KEY =
-  "8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f";
+import { getSigner } from "./util/getSigner";
 
 /*
 The caller of this script (wallet used) should be authorized to mint tokens.
@@ -18,21 +14,8 @@ Script parameters:
 - Token quantity: quantity of token to mint to recipient address
 */
 async function main() {
-  // Set up wallet based on environment variables
-  const wallet =
-    process.env.MNEMONIC && process.env.MNEMONIC.length > 0
-      ? ethers.Wallet.fromMnemonic(process.env.MNEMONIC)
-      : new ethers.Wallet(process.env.PRIVATE_KEY ?? EXPOSED_KEY);
-  console.log(`Using address ${wallet.address}`);
-  const provider = ethers.providers.getDefaultProvider("goerli");
-  const signer = wallet.connect(provider);
-  const balanceBN = await signer.getBalance();
-  const balance = Number(ethers.utils.formatEther(balanceBN));
-  console.log(`Wallet balance ${balance}`);
-  // Validate wallet balance to ensure sender has enough for gas fees
-  if (balance < 0.01) {
-    throw new Error("Not enough ether");
-  }
+  const signer = await getSigner();
+
   // Get address of token from script arguments and create Token object
   if (process.argv.length < 3) throw new Error("Token address missing");
   const tokenAddress = process.argv[2];
